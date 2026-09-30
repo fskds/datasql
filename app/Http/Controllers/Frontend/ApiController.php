@@ -271,6 +271,10 @@ class ApiController extends Controller
             $query->where('status', 1)->orderBy('sort');
         }]);
 
+        $columns->load(['banners' => function ($query) {
+            $query->where('status', 1);
+        }]);
+
         return $this->success($columns);
     }
 
@@ -291,6 +295,11 @@ class ApiController extends Controller
         // 加载 sections
         $column->load(['sections' => function ($query) {
             $query->where('status', 1)->orderBy('sort');
+        }]);
+
+        // 加载 banners（Banner 关系按 pivot.sort 排序）
+        $column->load(['banners' => function ($query) {
+            $query->where('status', 1);
         }]);
 
         $data = $column->toArray();

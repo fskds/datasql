@@ -1,1 +1,0 @@
-(globalThis.utooChunk_ant_design_pro||(globalThis.utooChunk_ant_design_pro=[])).push(["object"==typeof document?document.currentScript:void 0,22569,t=>{"use strict";var o=t.i(91398),e=t.i(42882),i=()=>(0,o.jsx)(e.default,{groupid:"email",title:"邮箱服务"});t.s(["default",()=>i])}]);

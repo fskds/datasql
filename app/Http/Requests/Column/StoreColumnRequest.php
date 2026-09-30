@@ -32,6 +32,8 @@ class StoreColumnRequest extends FormRequest
             'cover' => 'nullable|string|max:500',
             'sort' => 'nullable|integer|min:0',
             'status' => 'nullable|integer|in:0,1',
+            'banner_ids' => 'nullable|array',
+            'banner_ids.*' => 'integer',
         ];
     }
 

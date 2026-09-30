@@ -1,1 +1,0 @@
-(globalThis.utooChunk_ant_design_pro||(globalThis.utooChunk_ant_design_pro=[])).push(["object"==typeof document?document.currentScript:void 0,88599,t=>{"use strict";var o=t.i(91398),i=t.i(42882),u=()=>(0,o.jsx)(i.default,{groupid:"basic",title:"基础配置"});t.s(["default",()=>u])}]);

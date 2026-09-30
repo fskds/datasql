@@ -4,6 +4,7 @@ namespace App\Models\Column;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Banner\Banner;
 
 class Column extends Model
 {
@@ -52,9 +53,7 @@ class Column extends Model
      */
     public function banners()
     {
-        return $this->belongsToMany(Banner::class, 'content_banner_column', 'column_id', 'banner_id')
-            ->withPivot('sort')
-            ->orderBy('content_banner_column.sort');
+        return $this->belongsToMany(Banner::class, 'content_banner_column', 'column_id', 'banner_id');
     }
 
     /**

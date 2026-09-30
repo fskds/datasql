@@ -27,7 +27,7 @@ class AdminInitSeeder extends Seeder
                 'mobile' => '13800000000',
                 'name' => '超级管理员',
                 'email' => 'a@a.com',
-                'password' => Hash::make('123456'),
+                'password' => Hash::make('aaaaaa'),
                 'created_at' => $now,
                 'updated_at' => $now,
             ]);

@@ -20,6 +20,10 @@ use App\Http\Controllers\Backend\Attachment\TempController;
 use App\Http\Controllers\Backend\Link\LinkController;
 use App\Http\Controllers\Backend\Schema\SchemaTypeController;
 use App\Http\Controllers\Backend\Schema\SchemaPropertyController;
+use App\Http\Controllers\Backend\Acupoint\MeridianController;
+use App\Http\Controllers\Backend\Acupoint\MeridianLineController;
+use App\Http\Controllers\Backend\Acupoint\AcupointController;
+use App\Http\Controllers\Backend\Acupoint\AcupointDescController;
 use App\Http\Controllers\Backend\System\SiteInfoController;
 use App\Http\Controllers\Backend\System\OptionController;
 use App\Http\Controllers\Backend\Cache\CacheController;
@@ -209,6 +213,53 @@ Route::namespace('Backend\Schema')->middleware('auth:api-admin')->group(function
         Route::delete('destroy', [SchemaPropertyController::class, 'destroy'])->name('schema.property.destroy');
         Route::delete('restore', [SchemaPropertyController::class, 'restore'])->name('schema.property.restore');
         Route::delete('force', [SchemaPropertyController::class, 'force'])->name('schema.property.force');
+    });
+});
+
+Route::namespace('Backend\Acupoint')->middleware('auth:api-admin')->group(function() {
+    // 经脉管理
+    Route::prefix('acupoint/meridian')->group(function() {
+        Route::get('/', [MeridianController::class, 'index'])->name('acupoint.meridian.list');
+        Route::get('data', [MeridianController::class, 'data'])->name('acupoint.meridian.data');
+        Route::get('{id}/show', [MeridianController::class, 'show'])->name('acupoint.meridian.show');
+        Route::post('store', [MeridianController::class, 'store'])->name('acupoint.meridian.store');
+        Route::put('{id}/update', [MeridianController::class, 'update'])->name('acupoint.meridian.update');
+        Route::delete('destroy', [MeridianController::class, 'destroy'])->name('acupoint.meridian.destroy');
+        Route::delete('restore', [MeridianController::class, 'restore'])->name('acupoint.meridian.restore');
+        Route::delete('force', [MeridianController::class, 'force'])->name('acupoint.meridian.force');
+    });
+    // 经脉线管理
+    Route::prefix('acupoint/meridian_line')->group(function() {
+        Route::get('/', [MeridianLineController::class, 'index'])->name('acupoint.meridian_line.list');
+        Route::get('data', [MeridianLineController::class, 'data'])->name('acupoint.meridian_line.data');
+        Route::get('{id}/show', [MeridianLineController::class, 'show'])->name('acupoint.meridian_line.show');
+        Route::post('store', [MeridianLineController::class, 'store'])->name('acupoint.meridian_line.store');
+        Route::put('{id}/update', [MeridianLineController::class, 'update'])->name('acupoint.meridian_line.update');
+        Route::delete('destroy', [MeridianLineController::class, 'destroy'])->name('acupoint.meridian_line.destroy');
+        Route::delete('restore', [MeridianLineController::class, 'restore'])->name('acupoint.meridian_line.restore');
+        Route::delete('force', [MeridianLineController::class, 'force'])->name('acupoint.meridian_line.force');
+    });
+    // 穴道管理
+    Route::prefix('acupoint/acupoint')->group(function() {
+        Route::get('/', [AcupointController::class, 'index'])->name('acupoint.acupoint.list');
+        Route::get('data', [AcupointController::class, 'data'])->name('acupoint.acupoint.data');
+        Route::get('{id}/show', [AcupointController::class, 'show'])->name('acupoint.acupoint.show');
+        Route::post('store', [AcupointController::class, 'store'])->name('acupoint.acupoint.store');
+        Route::put('{id}/update', [AcupointController::class, 'update'])->name('acupoint.acupoint.update');
+        Route::delete('destroy', [AcupointController::class, 'destroy'])->name('acupoint.acupoint.destroy');
+        Route::delete('restore', [AcupointController::class, 'restore'])->name('acupoint.acupoint.restore');
+        Route::delete('force', [AcupointController::class, 'force'])->name('acupoint.acupoint.force');
+    });
+    // 穴位介绍管理
+    Route::prefix('acupoint/desc')->group(function() {
+        Route::get('/', [AcupointDescController::class, 'index'])->name('acupoint.desc.list');
+        Route::get('data', [AcupointDescController::class, 'data'])->name('acupoint.desc.data');
+        Route::get('{id}/show', [AcupointDescController::class, 'show'])->name('acupoint.desc.show');
+        Route::post('store', [AcupointDescController::class, 'store'])->name('acupoint.desc.store');
+        Route::put('{id}/update', [AcupointDescController::class, 'update'])->name('acupoint.desc.update');
+        Route::delete('destroy', [AcupointDescController::class, 'destroy'])->name('acupoint.desc.destroy');
+        Route::delete('restore', [AcupointDescController::class, 'restore'])->name('acupoint.desc.restore');
+        Route::delete('force', [AcupointDescController::class, 'force'])->name('acupoint.desc.force');
     });
 });
 

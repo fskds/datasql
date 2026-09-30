@@ -29,6 +29,13 @@ class ColumnController extends Controller
             $request->get('pageSize', $request->get('limit', 10))
         )->toArray();
 
+        foreach ($res['data'] as &$row) {
+            $row['banner_ids'] = \DB::table('content_banner_column')
+                ->where('column_id', $row['id'])
+                ->pluck('banner_id')
+                ->all();
+        }
+
         $result = [
             'status' => true,
             'data' => $res['data'],
@@ -46,6 +53,10 @@ class ColumnController extends Controller
         $validated = $request->validated();
 
         $column = Column::create($validated);
+
+        if (array_key_exists('banner_ids', $validated)) {
+            $column->banners()->sync($validated['banner_ids'] ?? []);
+        }
 
         return response()->json([
             'success' => true,
@@ -68,11 +79,16 @@ class ColumnController extends Controller
     /**
      * 更新栏目
      */
-    public function update(UpdateColumnRequest $request, Column $column): JsonResponse
+    public function update(UpdateColumnRequest $request, $id): JsonResponse
     {
         $validated = $request->validated();
+        $column = Column::findOrFail($id);
 
         $column->update($validated);
+
+        if (array_key_exists('banner_ids', $validated)) {
+            $column->banners()->sync($validated['banner_ids'] ?? []);
+        }
 
         return response()->json([
             'success' => true,
@@ -107,3 +123,4 @@ class ColumnController extends Controller
         ]);
     }
 }
+

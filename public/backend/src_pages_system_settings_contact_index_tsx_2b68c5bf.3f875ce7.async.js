@@ -1,1 +1,0 @@
-(globalThis.utooChunk_ant_design_pro||(globalThis.utooChunk_ant_design_pro=[])).push(["object"==typeof document?document.currentScript:void 0,53104,t=>{"use strict";var o=t.i(91398),u=t.i(42882),e=()=>(0,o.jsx)(u.default,{groupid:"contact",title:"联系方式"});t.s(["default",()=>e])}]);

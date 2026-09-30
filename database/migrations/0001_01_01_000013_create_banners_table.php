@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('link')->nullable()->comment('链接地址');
             $table->text('html')->nullable()->comment('自定义HTML');
             $table->text('css')->nullable()->comment('自定义CSS');
-            $table->string('cover')->nullable()->comment('封面图');
+            $table->string('imageUrl')->nullable()->comment('封面图');
             $table->unsignedInteger('sort')->default(0)->comment('排序');
             $table->tinyInteger('status')->default(1)->comment('状态 1启用 0禁用');
             $table->softDeletes();

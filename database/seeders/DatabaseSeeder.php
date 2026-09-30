@@ -17,15 +17,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
 
-        // ============ Schema.org 数据 ============
+        // ============ 经络穴道数据（renti） ============
         $this->call([
-            SchemaTypeSeeder::class,
-            SchemaPropertySeeder::class,
+            MeridianSeeder::class,
+            MeridianLineSeeder::class,
+            AcupointSeeder::class,
+            AcupointDescSeeder::class,
+            ModelSeeder::class,
         ]);
     }
 }

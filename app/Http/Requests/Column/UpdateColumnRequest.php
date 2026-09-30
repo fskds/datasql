@@ -23,15 +23,23 @@ class UpdateColumnRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('id');
+        $slug = 'sometimes|required|string|max:255';
+        if ($id) {
+            $slug .= '|unique:content_columns,slug,' . $id;
+        }
+
         return [
             'name' => 'sometimes|required|string|max:255',
-            'slug' => 'sometimes|required|string|max:255|unique:content_columns,slug,' . $this->route('column')->id,
+            'slug' => $slug,
             'description' => 'sometimes|nullable|string|max:500',
             'keywords' => 'sometimes|nullable|string|max:255',
             'nav_id' => 'sometimes|nullable|integer|min:0',
             'cover' => 'sometimes|nullable|string|max:500',
             'sort' => 'sometimes|nullable|integer|min:0',
             'status' => 'sometimes|nullable|integer|in:0,1',
+            'banner_ids' => 'sometimes|nullable|array',
+            'banner_ids.*' => 'integer',
         ];
     }
 
@@ -69,3 +77,4 @@ class UpdateColumnRequest extends FormRequest
         ], 422));
     }
 }
+
